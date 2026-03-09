@@ -17,11 +17,14 @@ public class CalculatorController {
 
             double sum = num1 + num2;
             double product = num1 * num2;
+            double subtract = num1 - num2;
+            double divide = num2 != 0 ? num1 / num2 : Double.NaN;
 
-            resultLabel.setText("Sum: " + sum + ", Product: " + product);
+            resultLabel.setText( "Sum: " + sum + ", Product: " + product + ", Difference: " + subtract + ", Quotient: " + (Double.isNaN(divide) ? "Undefined" : divide)
+            );
 
             // Save to DB
-            ResultService.saveResult(num1, num2, sum, product);
+            ResultService.saveResult(num1, num2, sum, product, subtract, divide);
 
         } catch (NumberFormatException e) {
             resultLabel.setText("Please enter valid numbers!");
