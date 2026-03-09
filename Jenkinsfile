@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        PATH = "/opt/homebrew/bin:${env.PATH}"
+        PATH = "/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/opt/openjdk@21/bin:/opt/homebrew/opt/maven/bin:/usr/bin:/bin:/usr/sbin:/sbin"
         DOCKERHUB_CREDENTIALS_ID = 'docker_hub'
         DOCKERHUB_REPO = 'olgachi/calculator'
         DOCKER_IMAGE_TAG = 'latest'
@@ -20,17 +20,6 @@ pipeline {
             steps {
                 git branch: 'main',
                         url: 'https://github.com/olgachit/Calculator.git'
-            }
-        }
-
-        stage('Debug Docker') {
-            steps {
-                sh '''
-        echo "PATH=$PATH"
-        which docker || true
-        ls -l /opt/homebrew/bin/docker || true
-        docker --version || true
-        '''
             }
         }
 
