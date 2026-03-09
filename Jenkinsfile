@@ -23,6 +23,17 @@ pipeline {
             }
         }
 
+        stage('Debug Docker') {
+            steps {
+                sh '''
+        echo "PATH=$PATH"
+        which docker || true
+        ls -l /opt/homebrew/bin/docker || true
+        docker --version || true
+        '''
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
